@@ -2,11 +2,61 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
+      rel="stylesheet"
+    />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css" />
     <title>Library</title>
   </head>
-  <body></body>
+  <body>
+    <div class="header">
+      <div class="pageName">Personal Book Tracker</div>
+      <div class="counter">
+        <div class="count">
+          Total Books
+          <div class>0</div>
+        </div>
+        <div class="count">
+          In Progress
+          <div>0</div>
+        </div>
+        <div class="count">
+          Completed
+          <div>0</div>
+        </div>
+      </div>
+    </div>
+    <div class="stats"></div>
+    <class class="libContainer" data-container>
+        <div class="grid1">
+          <div class="title">Game of Thrones</div>
+          <div class="sidebar">
+            <div class="author">GRR. Martin</div>
+            <div class="genre">Fiction-Fantasy</div>
+            <div class="pages">1034 pages</div>
+          </div>
+          <div class="comment">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam
+            cumque, accusamus consectetur obcaecati fugit ad, cupiditate
+            pariatur enim rerum veniam, porro expedita minima? Voluptate ut,
+            dolore quidem hic nam quis.
+          </div>
+          <div class="bottom">
+          <div class="status">
+            <label class="switch">
+              <input type="checkbox" />
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div><button>Edit</button><button>Delete</button></div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
