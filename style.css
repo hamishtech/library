@@ -10,7 +10,7 @@ body {
   padding: 0;
   margin: 0;
   height: 100vh;
-  background-image: url(/canvas.png);
+  background-image: url(canvas.png);
   background-size: 100% 100%;
 }
 
