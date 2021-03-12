@@ -88,9 +88,13 @@ function readBtn() {
       if (e.target.checked) {
         e.target.dataset.read = 1;
         myLibrary[index].status = 1;
+        e.target.parentNode.parentNode.parentNode.parentNode.style.opacity =
+          "100%";
       } else {
         e.target.dataset.read = 0;
         myLibrary[index].status = 0;
+        e.target.parentNode.parentNode.parentNode.parentNode.style.opacity =
+          "50%";
       }
       updateLocalStorage();
       count();
@@ -127,34 +131,34 @@ function populate() {
     container.appendChild(newDiv);
     newDiv.dataset.index = `${index}`;
     // add title
-    let title = document.createElement("div");
-    title.classList.add("title");
-    title.textContent = book.title;
-    newDiv.appendChild(title);
-    //create sidebar
-    let sidebar = document.createElement("div");
-    sidebar.classList.add("sidebar");
-    newDiv.appendChild(sidebar);
-    //add author
-    let author = document.createElement("div");
-    author.classList.add("author");
-    author.textContent = book.author;
-    sidebar.appendChild(author);
-    //add Genre
-    let genre = document.createElement("div");
-    genre.classList.add("genre");
-    genre.textContent = book.genre;
-    sidebar.appendChild(genre);
-    //add number of pages
-    let pages = document.createElement("div");
-    pages.classList.add("pages");
-    pages.textContent = book.pages;
-    sidebar.appendChild(pages);
+    // let title = document.createElement("div");
+    // title.classList.add("title");
+    // title.textContent = book.title;
+    // newDiv.appendChild(title);
+    // //create sidebar
+    // let sidebar = document.createElement("div");
+    // sidebar.classList.add("sidebar");
+    // newDiv.appendChild(sidebar);
+    // //add author
+    // let author = document.createElement("div");
+    // author.classList.add("author");
+    // author.textContent = book.author;
+    // sidebar.appendChild(author);
+    // //add Genre
+    // let genre = document.createElement("div");
+    // genre.classList.add("genre");
+    // genre.textContent = book.genre;
+    // sidebar.appendChild(genre);
+    // //add number of pages
+    // let pages = document.createElement("div");
+    // pages.classList.add("pages");
+    // pages.textContent = book.pages;
+    // sidebar.appendChild(pages);
     //add comments
-    let comment = document.createElement("div");
-    comment.classList.add("comment");
-    comment.textContent = book.comment;
-    newDiv.appendChild(comment);
+    // let comment = document.createElement("div");
+    // comment.classList.add("comment");
+    // comment.textContent = book.comment;
+    // newDiv.appendChild(comment);
     //add bottom
     let bottom = document.createElement("div");
     bottom.classList.add("bottom");
@@ -170,9 +174,11 @@ function populate() {
     if (book.status == 1) {
       input.dataset.read = 1;
       input.checked = true;
+      newDiv.style.opacity = "100%";
     } else {
       input.dataset.read = 0;
       input.checked = false;
+      newDiv.style.opacity = "50%";
     }
     let span = document.createElement("span");
     span.classList.add("slider");
@@ -196,8 +202,8 @@ function populate() {
     //only set img if the entry exists
     if (book.img) {
       newDiv.style.backgroundImage = `linear-gradient(
-        rgba(0, 0, 0, 0.7),
-        rgba(0, 0, 0, 0.5)
+        rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.1)
       ),url(${book.img})`;
       newDiv.style.color = "white";
       //   ).setAttribute("src", book.img);
@@ -248,11 +254,11 @@ submit.addEventListener("click", function (e) {
     let status = bookForm.status.value;
     let img = bookForm.image.value;
     if (
-      title == "" ||
-      author == "" ||
-      genre == "" ||
-      pages == "" ||
-      comment == ""
+      title == ""
+      //   author == "" ||
+      //   genre == "" ||
+      //   pages == "" ||
+      //   comment == ""
     ) {
       return alert("Fill in all input fields");
     } else {

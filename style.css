@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
 *,
 *::before,
 *::after {
@@ -21,17 +23,19 @@ body {
   padding: 20px;
   font-size: 50px;
   text-align: center;
-  font-family: "Lobster", cursive;
+  font-family: "Audiowide", cursive;
 }
 
 .counter {
+  font-family: "Inconsolata", monospace;
   display: flex;
   width: 100%;
-  justify-content: space-around;
+  justify-content: center;
   margin: 0px auto;
   width: 80vh;
 }
 .counter div {
+  font-family: "Inconsolata", monospace;
   box-sizing: border-box;
   text-align: center;
   display: flex;
@@ -39,7 +43,8 @@ body {
   flex-direction: column;
   align-content: space-around;
   background: rgba(0, 0, 0, 0.5);
-  min-height: 20px;
+  max-height: 80px;
+  min-width: 150px;
 }
 
 .count {
@@ -49,12 +54,13 @@ body {
 }
 .count div {
   background: transparent;
+  font-size: 40px;
 }
 
 .libContainer {
   padding-top: 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 400px));
+  grid-template-columns: repeat(auto-fit, minmax(200px, auto));
   grid-gap: 100px;
   justify-content: center;
 }
@@ -66,7 +72,8 @@ body {
   background-color: #85ffbd;
   background-image: linear-gradient(45deg, #85ffbd 0%, #fffb7d 100%);
   box-shadow: 3px 3px 5px 6px #ccc;
-  min-height: 350px;
+  min-height: 300px;
+  max-width: 300px;
   display: grid;
   grid-template-areas:
     "title title"
@@ -76,6 +83,7 @@ body {
   padding-left: 10px;
   background-size: 100% 100%;
   margin-bottom: 20px;
+  background-color: black;
 }
 
 .title {
@@ -103,6 +111,7 @@ body {
 }
 .bottom {
   grid-area: bottom;
+  margin-bottom: -175px;
   padding-left: 10px;
   padding-right: 10px;
   justify-self: flex-start;
@@ -170,8 +179,8 @@ body {
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 30px;
+  height: 17px;
 }
 
 /* Hide default HTML checkbox */
@@ -197,10 +206,10 @@ body {
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
+  height: 13px;
+  width: 13px;
+  left: 2px;
+  bottom: 2px;
   background-color: white;
   -webkit-transition: 0.4s;
   transition: 0.4s;
@@ -215,9 +224,9 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+  -webkit-transform: translateX(13px);
+  -ms-transform: translateX(13px);
+  transform: translateX(13px);
 }
 
 /* Rounded sliders */
