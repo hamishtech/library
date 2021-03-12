@@ -1,6 +1,24 @@
 const container = document.querySelector("[data-container]");
 
+<<<<<<< Updated upstream
 let myLibrary = [];
+=======
+//returning empty library if there is no localestorage to avoid error
+function libraryVar() {
+  if (localStorage.length == 0) {
+    myLibrary = [];
+  } else myLibrary = JSON.parse(localStorage["myLibrary"]);
+}
+
+let myLibrary = "";
+libraryVar();
+let index = 0;
+>>>>>>> Stashed changes
+
+function updateLocalStorage() {
+  localStorage.clear();
+  localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+}
 
 //book constructor
 function Book(title, author, genre, pages, comment, status, img) {
@@ -28,7 +46,6 @@ let book1 = new Book(
   "read",
   "https://images.penguinrandomhouse.com/cover/9780553805444"
 );
-addBookToLibrary(book1);
 
 let book2 = new Book(
   "Sapiens",
@@ -39,8 +56,44 @@ let book2 = new Book(
   "read",
   "https://images-na.ssl-images-amazon.com/images/I/41+lolL22gL.jpg"
 );
-addBookToLibrary(book2);
 
+<<<<<<< Updated upstream
+=======
+function readBtn() {
+  let readBtn = document.querySelectorAll(".readBtn");
+  readBtn.forEach((btn) =>
+    btn.addEventListener("change", (e) => {
+      index = e.target.parentNode.parentNode.parentNode.parentNode.getAttribute(
+        "data-index"
+      );
+      if (e.target.checked) {
+        e.target.dataset.read = 1;
+        myLibrary[index].status = 1;
+      } else {
+        e.target.dataset.read = 0;
+        myLibrary[index].status = 0;
+      }
+      updateLocalStorage();
+      count();
+    })
+  );
+}
+
+//delete button - using index-- when used without function. it only runs once at beggining and then event listener is lost once populated is ran a second time.
+function deleter() {
+  del.forEach((button) =>
+    button.addEventListener("click", (e) => {
+      index = e.target.parentNode.parentNode.parentNode.getAttribute(
+        "data-index"
+      );
+      myLibrary.splice(index, 1);
+      updateLocalStorage();
+      populate();
+    })
+  );
+}
+
+>>>>>>> Stashed changes
 //populating book gallery using DOM -- for each array item -
 function populate() {
   //create background
@@ -119,3 +172,88 @@ function populate() {
   });
 }
 populate();
+<<<<<<< Updated upstream
+=======
+
+//form
+
+//add book button - toggles visiblility of form
+addBook.addEventListener("click", function (e) {
+  modal.classList.toggle("show-modal");
+  bookForm.reset();
+});
+
+// add cancel -- removes visibility of form
+cancel.addEventListener("click", function (e) {
+  modal.classList.toggle("show-modal");
+  container.dataset.mode = "";
+});
+
+//creates object based on form data
+submit.addEventListener("click", function (e) {
+  if (container.dataset.mode == "editing") {
+    myLibrary[editIndex].title = bookForm.title.value;
+    myLibrary[editIndex].author = bookForm.author.value;
+    myLibrary[editIndex].genre = bookForm.genre.value;
+    myLibrary[editIndex].pages = bookForm.pages.value;
+    myLibrary[editIndex].comment = bookForm.comment.value;
+    myLibrary[editIndex].status = bookForm.status.value;
+    myLibrary[editIndex].img = bookForm.image.value;
+    populate();
+    modal.classList.toggle("show-modal");
+  } else {
+    let title = bookForm.title.value;
+    let author = bookForm.author.value;
+    let genre = bookForm.genre.value;
+    let pages = bookForm.pages.value;
+    let comment = bookForm.comment.value;
+    let status = bookForm.status.value;
+    let img = bookForm.image.value;
+    if (
+      title == "" ||
+      author == "" ||
+      genre == "" ||
+      pages == "" ||
+      comment == ""
+    ) {
+      return alert("Fill in all input fields");
+    } else {
+      addBookToLibrary(
+        new Book(title, author, genre, pages, comment, status, img)
+      );
+      console.log(myLibrary);
+      populate();
+      modal.classList.toggle("show-modal");
+    }
+  }
+  updateLocalStorage();
+});
+
+//read button functionality - if read - toggle read checkbox to on-- add to completed book count
+
+//editing helper variables
+editIndex = "";
+
+// using edit btn
+function editer() {
+  let edit = document.querySelectorAll(".editBtn");
+  edit.forEach((btn) =>
+    btn.addEventListener("click", (e) => {
+      index = e.target.parentNode.parentNode.parentNode.getAttribute(
+        "data-index"
+      );
+      editIndex = index;
+      e.target.parentNode.parentNode.parentNode.parentNode.dataset.mode =
+        "editing";
+      modal.classList.toggle("show-modal");
+      bookForm.title.value = myLibrary[index].title;
+      bookForm.author.value = myLibrary[index].author;
+      bookForm.genre.value = myLibrary[index].genre;
+      bookForm.pages.value = myLibrary[index].pages.match(/\d+/g).join("");
+      bookForm.comment.value = myLibrary[index].comment;
+      bookForm.status.value = myLibrary[index].status;
+      bookForm.image.value = myLibrary[index].img;
+    })
+  );
+}
+>>>>>>> Stashed changes
