@@ -1,8 +1,5 @@
 const container = document.querySelector("[data-container]");
 
-<<<<<<< Updated upstream
-let myLibrary = [];
-=======
 //returning empty library if there is no localestorage to avoid error
 function libraryVar() {
   if (localStorage.length == 0) {
@@ -13,7 +10,6 @@ function libraryVar() {
 let myLibrary = "";
 libraryVar();
 let index = 0;
->>>>>>> Stashed changes
 
 function updateLocalStorage() {
   localStorage.clear();
@@ -57,8 +53,6 @@ let book2 = new Book(
   "https://images-na.ssl-images-amazon.com/images/I/41+lolL22gL.jpg"
 );
 
-<<<<<<< Updated upstream
-=======
 function readBtn() {
   let readBtn = document.querySelectorAll(".readBtn");
   readBtn.forEach((btn) =>
@@ -93,7 +87,6 @@ function deleter() {
   );
 }
 
->>>>>>> Stashed changes
 //populating book gallery using DOM -- for each array item -
 function populate() {
   //create background
@@ -172,8 +165,6 @@ function populate() {
   });
 }
 populate();
-<<<<<<< Updated upstream
-=======
 
 //form
 
@@ -256,4 +247,3 @@ function editer() {
     })
   );
 }
->>>>>>> Stashed changes
