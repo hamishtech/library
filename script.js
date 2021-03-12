@@ -1,4 +1,14 @@
 const container = document.querySelector("[data-container]");
+let grid1 = document.querySelectorAll(".grid1");
+const addBook = document.querySelector("[data-addBook]");
+let modal = document.querySelector("[data-modal]");
+let cancel = document.querySelector("[data-cancel]");
+let submit = document.querySelector("[data-submit]");
+let bookForm = document.querySelector("[data-bookForm]");
+let del = document.querySelectorAll(".deleteBtn");
+let bookCount = document.querySelector("[data-bookCount");
+let completedCount = document.querySelector("[data-completedCount");
+let inProgress = document.querySelector("[data-progressCount");
 
 //returning empty library if there is no localestorage to avoid error
 function libraryVar() {
@@ -7,7 +17,6 @@ function libraryVar() {
   } else myLibrary = JSON.parse(localStorage["myLibrary"]);
 }
 
-let myLibrary = "";
 libraryVar();
 let index = 0;
 
@@ -27,6 +36,21 @@ function Book(title, author, genre, pages, comment, status, img) {
   this.img = img;
 }
 
+function countReader() {
+  let count = 0;
+  let readBtn = document.querySelectorAll(".readBtn");
+  readBtn.forEach((btn) => {
+    if (btn.dataset.read == 1) count++;
+  });
+  return count;
+}
+// count function update
+function count() {
+  bookCount.textContent = myLibrary.length;
+  completedCount.textContent = countReader();
+  inProgress.textContent = `${myLibrary.length - completedCount.textContent}`;
+}
+count();
 //adding book to array which will be used to display on page
 function addBookToLibrary(book) {
   myLibrary.push(book);
@@ -39,7 +63,7 @@ let book1 = new Book(
   "fiction",
   500,
   "lorem",
-  "read",
+  "1",
   "https://images.penguinrandomhouse.com/cover/9780553805444"
 );
 
@@ -49,7 +73,7 @@ let book2 = new Book(
   "self-help",
   600,
   "lorem",
-  "read",
+  "",
   "https://images-na.ssl-images-amazon.com/images/I/41+lolL22gL.jpg"
 );
 
@@ -89,12 +113,18 @@ function deleter() {
 
 //populating book gallery using DOM -- for each array item -
 function populate() {
+  while (container.hasChildNodes()) {
+    container.removeChild(container.lastChild);
+  }
+  index = -1;
   //create background
   myLibrary.forEach((book) => {
+    index += 1;
     //create book box
     let newDiv = document.createElement("div");
     newDiv.classList.add("grid1");
     container.appendChild(newDiv);
+    newDiv.dataset.index = `${index}`;
     // add title
     let title = document.createElement("div");
     title.classList.add("title");
@@ -135,6 +165,14 @@ function populate() {
     label.classList.add("switch");
     let input = document.createElement("input");
     input.setAttribute("type", "checkbox");
+    input.classList.add("readBtn");
+    if (book.status == 1) {
+      input.dataset.read = 1;
+      input.checked = true;
+    } else {
+      input.dataset.read = 0;
+      input.checked = false;
+    }
     let span = document.createElement("span");
     span.classList.add("slider");
     label.appendChild(input);
@@ -145,9 +183,11 @@ function populate() {
     let buttonDiv = document.createElement("div");
     let editBtn = document.createElement("button");
     editBtn.textContent = "Edit";
+    editBtn.classList.add("editBtn");
     buttonDiv.appendChild(editBtn);
     let deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Delete";
+    deleteBtn.classList.add("deleteBtn");
     buttonDiv.appendChild(deleteBtn);
     bottom.appendChild(buttonDiv);
     //append image
@@ -163,6 +203,12 @@ function populate() {
       //   newDiv.appendChild(img);
     }
   });
+  del = document.querySelectorAll(".deleteBtn");
+  deleter();
+  count();
+  countReader();
+  editer();
+  readBtn();
 }
 populate();
 

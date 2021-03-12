@@ -19,43 +19,44 @@
       <div class="counter">
         <div class="count">
           Total Books
-          <div class>0</div>
+          <div class data-bookCount>0</div>
         </div>
         <div class="count">
           In Progress
-          <div>0</div>
+          <div data-progressCount>0</div>
         </div>
         <div class="count">
           Completed
-          <div>0</div>
+          <div data-completedCount>0</div>
         </div>
       </div>
     </div>
-    <div class="stats"></div>
-    <class class="libContainer" data-container>
-        <div class="grid1">
-          <div class="title">Game of Thrones</div>
-          <div class="sidebar">
-            <div class="author">GRR. Martin</div>
-            <div class="genre">Fiction-Fantasy</div>
-            <div class="pages">1034 pages</div>
-          </div>
-          <div class="comment">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam
-            cumque, accusamus consectetur obcaecati fugit ad, cupiditate
-            pariatur enim rerum veniam, porro expedita minima? Voluptate ut,
-            dolore quidem hic nam quis.
-          </div>
-          <div class="bottom">
-          <div class="status">
-            <label class="switch">
-              <input type="checkbox" />
-              <span class="slider"></span>
-            </label>
-          </div>
-          <div><button>Edit</button><button>Delete</button></div>
-        </div>
-        </div>
+    <div class="add"><button class="addBtn" data-addBook>ADD BOOK</button></div>
+    <div class="libContainer" data-container></div>
+    <div class="modal" data-modal>
+      <div class="form">
+        <form data-bookForm>
+          <label for="title">Book Title</label><br />
+          <input type="text" name="title" /><br />
+          <label for="author">Author</label><br />
+          <input type="text" name="author" /><br />
+          <label for="genre">Genre</label><br />
+          <input type="text" name="genre" /><br />
+          <label for="pages">Number of Pages</label><br />
+          <input type="number" name="pages" /><br />
+          <label for="comment">Comments</label><br />
+          <input type="text" name="comment" /><br />
+          <label for="img">Book Image URL</label><br />
+          <input type="text" name="image" /><br />
+          <label for="status">Finished Book?</label>
+          <select name="status">
+            <option value="1">Finished</option>
+            <option value="0">Not Finished</option>
+          </select>
+          <br />
+          <button class="submit" type="button" data-submit>Submit</button>
+          <button class="cancel" type="button" data-cancel>Cancel</button>
+        </form>
       </div>
     </div>
   </body>
