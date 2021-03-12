@@ -11,6 +11,7 @@ let completedCount = document.querySelector("[data-completedCount");
 let inProgress = document.querySelector("[data-progressCount");
 
 //returning empty library if there is no localestorage to avoid error
+myLibrary = "";
 function libraryVar() {
   if (localStorage.length == 0) {
     myLibrary = [];
