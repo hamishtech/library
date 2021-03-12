@@ -10,8 +10,21 @@ let bookCount = document.querySelector("[data-bookCount");
 let completedCount = document.querySelector("[data-completedCount");
 let inProgress = document.querySelector("[data-progressCount");
 
-let myLibrary = [];
+let myLibrary = "";
+//returning empty library if there is no localestorage to avoid error
+function libraryVar() {
+  if (localStorage.length == 0) {
+    myLibrary = [];
+  } else myLibrary = JSON.parse(localStorage["myLibrary"]);
+}
+
+libraryVar();
 let index = 0;
+
+function updateLocalStorage() {
+  localStorage.clear();
+  localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
+}
 
 //book constructor
 function Book(title, author, genre, pages, comment, status, img) {
@@ -39,7 +52,6 @@ function count() {
   inProgress.textContent = `${myLibrary.length - completedCount.textContent}`;
 }
 count();
-
 //adding book to array which will be used to display on page
 function addBookToLibrary(book) {
   myLibrary.push(book);
@@ -55,7 +67,6 @@ let book1 = new Book(
   "1",
   "https://images.penguinrandomhouse.com/cover/9780553805444"
 );
-addBookToLibrary(book1);
 
 let book2 = new Book(
   "Sapiens",
@@ -66,17 +77,22 @@ let book2 = new Book(
   "",
   "https://images-na.ssl-images-amazon.com/images/I/41+lolL22gL.jpg"
 );
-addBookToLibrary(book2);
 
 function readBtn() {
   let readBtn = document.querySelectorAll(".readBtn");
   readBtn.forEach((btn) =>
     btn.addEventListener("change", (e) => {
+      index = e.target.parentNode.parentNode.parentNode.parentNode.getAttribute(
+        "data-index"
+      );
       if (e.target.checked) {
         e.target.dataset.read = 1;
+        myLibrary[index].status = 1;
       } else {
         e.target.dataset.read = 0;
+        myLibrary[index].status = 0;
       }
+      updateLocalStorage();
       count();
     })
   );
@@ -90,7 +106,7 @@ function deleter() {
         "data-index"
       );
       myLibrary.splice(index, 1);
-      console.log(myLibrary);
+      updateLocalStorage();
       populate();
     })
   );
@@ -180,12 +196,12 @@ function populate() {
     //only set img if the entry exists
     if (book.img) {
       newDiv.style.backgroundImage = `linear-gradient(
-        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.7),
         rgba(0, 0, 0, 0.5)
       ),url(${book.img})`;
       newDiv.style.color = "white";
-      // ).setAttribute("src", book.img);
-      // newDiv.appendChild(img);
+      //   ).setAttribute("src", book.img);
+      //   newDiv.appendChild(img);
     }
   });
   del = document.querySelectorAll(".deleteBtn");
@@ -248,6 +264,7 @@ submit.addEventListener("click", function (e) {
       modal.classList.toggle("show-modal");
     }
   }
+  updateLocalStorage();
 });
 
 //read button functionality - if read - toggle read checkbox to on-- add to completed book count
