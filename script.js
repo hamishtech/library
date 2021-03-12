@@ -10,7 +10,6 @@ let bookCount = document.querySelector("[data-bookCount");
 let completedCount = document.querySelector("[data-completedCount");
 let inProgress = document.querySelector("[data-progressCount");
 
-let myLibrary = "";
 //returning empty library if there is no localestorage to avoid error
 function libraryVar() {
   if (localStorage.length == 0) {
